@@ -7,16 +7,14 @@ const MovieList = props => {
 
   return (
     <div>
-      
-      {/* Add a container here, like a grid */}
-      
-        {props.movieList.map(movie => {
-          const { title } = movie;
-          return <MovieItem title={title} />;
-        })}
-      
       {/* Add a container here, like a grid */}
 
+      {props.movieList.map(movie => {
+        const { id, title } = movie;
+        return <MovieItem key={id} id={id} title={title} />;
+      })}
+
+      {/* Add a container here, like a grid */}
     </div>
   );
 };
