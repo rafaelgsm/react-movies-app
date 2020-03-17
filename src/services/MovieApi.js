@@ -15,9 +15,9 @@ export const getMovies = async category => {
 //TV SHOWS:
 /////////////////////////////////////////////
 
-export const getTvShowsTopRated = async () => {
+export const getTvShows = async (category) => {
   // const callResult = await axios.get(
-  //   `${BASE_URL}tv/top_rated?api_key=${APP_KEY}&language=en-US&page=1`
+  //   `${BASE_URL}tv/${category}?api_key=${APP_KEY}&language=en-US&page=1`
   // );
 
   // return mapTvToMovieObject(callResult.data.results);
