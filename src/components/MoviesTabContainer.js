@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { getNowPlaying } from "../services/MovieApi";
-import Loading from '../layout/Loading'
-import MovieList from '../layout/MovieList'
 
+import Loading from "../layout/Loading";
+import MovieList from "../layout/MovieList";
 
-class MoviesContainer extends Component {
+class MoviesTabContainer extends Component {
   state = {
     isLoading: true,
     movieList: []
@@ -14,9 +14,6 @@ class MoviesContainer extends Component {
     this.setState({
       isLoading: true
     });
-
-    //parameters
-    // const { uri } = this.props.location.state;
 
     getNowPlaying().then(movieList => {
       console.log("getNowPlaying", movieList);
@@ -29,13 +26,13 @@ class MoviesContainer extends Component {
   }
 
   render() {
-    const { isLoading, movieList } = this.state
+    const { isLoading, movieList } = this.state;
     return (
       <div>
-        {isLoading ? <Loading /> : <MovieList movieList={movieList} />}
-      </div>
-    )
+        MOVIE
+        {isLoading ? <Loading /> : <MovieList movieList={movieList} />}</div>
+    );
   }
 }
 
-export default MoviesContainer;
+export default MoviesTabContainer;

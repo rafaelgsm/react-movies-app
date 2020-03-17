@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 //Layout for the Search inputs
-const Search = () => {
+const Search = props => {
   const classes = useStyles();
 
   const [searchType, setSearchType] = React.useState("");
@@ -43,14 +43,15 @@ const Search = () => {
 
   const handleChange = event => {
     setSearchType(event.target.value);
+
+    props.onSelectorChange(event.target.value);
   };
 
   return (
     <form
       style={{
-
-        marginTop:'4rem',
-        marginBottom:'4rem',
+        marginTop: "4rem",
+        marginBottom: "4rem",
 
         display: "flex",
         alignItems: "flex-start",
@@ -59,12 +60,14 @@ const Search = () => {
       className={classes.root}
       noValidate
       autoComplete="off"
+      onSubmit={props.onSubmit}
     >
       <TextField
         style={{ width: "40%" }}
         id="outlined-basic"
         label="Search"
         variant="outlined"
+        onChange={e => props.onInputChange(e.target.value)}
       />
 
       <FormControl
@@ -91,7 +94,7 @@ const Search = () => {
         </Select>
       </FormControl>
 
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" type="submit">
         Search
       </Button>
     </form>

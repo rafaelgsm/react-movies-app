@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 
 // Layout for representing a list
 const MovieList = props => {
-  
   const classes = useStyles();
 
   return (
@@ -26,8 +25,25 @@ const MovieList = props => {
         {/* Add a container here, like a grid */}
 
         {props.movieList.map(movie => {
-          const { id, title } = movie;
-          return <MovieItem key={id} id={id} title={title} />;
+          const {
+            id,
+            poster,
+            name,
+            release_date,
+            popularity,
+            description
+          } = movie;
+          return (
+            <MovieItem
+              key={id}
+              id={id}
+              poster={poster}
+              name={name}
+              release_date={release_date}
+              popularity={popularity}
+              description={description}
+            />
+          );
         })}
 
         {/* Add a container here, like a grid */}

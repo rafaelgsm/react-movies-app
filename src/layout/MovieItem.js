@@ -23,12 +23,16 @@ const useStyles = makeStyles({
 });
 
 //Layout for representing a list item
-const MovieItem = ({ title }) => {
+const MovieItem = ({ poster, name, release_date, popularity, description }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardContent>{title}</CardContent>
+      <CardContent>{poster}</CardContent>
+      <CardContent>{name}</CardContent>
+      <CardContent>{release_date}</CardContent>
+      <CardContent>{popularity}</CardContent>
+      <CardContent>{description}</CardContent>
     </Card>
   );
 };
