@@ -6,10 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 //Selector:
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import DefaultSelector from "./DefaultSelector";
 
 //Button:
 import Button from "@material-ui/core/Button";
@@ -34,12 +31,6 @@ const Search = props => {
   const classes = useStyles();
 
   const [searchType, setSearchType] = React.useState("");
-
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
 
   const handleChange = event => {
     setSearchType(event.target.value);
@@ -70,29 +61,11 @@ const Search = props => {
         onChange={e => props.onInputChange(e.target.value)}
       />
 
-      <FormControl
-        variant="outlined"
-        className={classes.formControl}
-        style={{ width: "200px" }}
-      >
-        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-          Search Type
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={searchType}
-          onChange={handleChange}
-          labelWidth={labelWidth}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={"movie"}>movie</MenuItem>
-          <MenuItem value={"multi"}>multi</MenuItem>
-          <MenuItem value={"tv"}>tv</MenuItem>
-        </Select>
-      </FormControl>
+      <DefaultSelector
+        searchTypeName="Search Type"
+        typeList={["", "movie", "multi", "tv"]}
+        onSelectorChange={handleChange}
+      />
 
       <Button variant="contained" color="primary" type="submit">
         Search

@@ -1,23 +1,21 @@
 import React, { Component } from "react";
-import { getNowPlaying } from "../services/MovieApi";
+import { getMovies } from "../services/MovieApi";
 
+import DefaultSelector from "../layout/DefaultSelector";
 import Loading from "../layout/Loading";
 import MovieList from "../layout/MovieList";
 
 class MoviesTabContainer extends Component {
   state = {
     isLoading: true,
+
+    categorySelected: "now_playing",
+
     movieList: []
   };
 
-  componentDidMount() {
-    this.setState({
-      isLoading: true
-    });
-
-    getNowPlaying().then(movieList => {
-      console.log("getNowPlaying", movieList);
-
+  getMoviesBasedOnCategory() {
+    getMovies(this.state.categorySelected).then(movieList => {
       this.setState({
         isLoading: false,
         movieList
@@ -25,12 +23,35 @@ class MoviesTabContainer extends Component {
     });
   }
 
+  componentDidMount = () => {
+    this.setState({
+      isLoading: true
+    });
+
+    this.getMoviesBasedOnCategory();
+  };
+
+  onSelectorChange = categorySelected => {
+    this.setState({
+      isLoading: true,
+      categorySelected
+    });
+
+    this.getMoviesBasedOnCategory();
+  };
+
   render() {
-    const { isLoading, movieList } = this.state;
+    const { isLoading, categorySelected, movieList } = this.state;
     return (
       <div>
-        MOVIE
-        {isLoading ? <Loading /> : <MovieList movieList={movieList} />}</div>
+        <DefaultSelector
+          searchTypeName="Category"
+          searchTypeSelected={categorySelected}
+          typeList={["now_playing", "popular", "top_rated", "upcoming"]}
+          onSelectorChange={this.onSelectorChange}
+        />
+        {isLoading ? <Loading /> : <MovieList movieList={movieList} />}
+      </div>
     );
   }
 }

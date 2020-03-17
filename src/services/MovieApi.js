@@ -1,15 +1,19 @@
 import { APP_KEY, BASE_URL } from "../config/api_config";
 import axios from "axios";
 
-export const getNowPlaying = async () => {
+export const getMovies = async category => {
   // const callResult = await axios.get(
-  //   `${BASE_URL}movie/now_playing?api_key=${APP_KEY}&language=en-US&page=1`
+  //   `${BASE_URL}movie/${category}?api_key=${APP_KEY}&language=en-US&page=1`
   // );
 
   // return mapToMovieObject(callResult.data.results);
 
   return mapToMovieObject(test_NowPlaying.results);
 };
+
+/////////////////////////////////////////////
+//TV SHOWS:
+/////////////////////////////////////////////
 
 export const getTvShowsTopRated = async () => {
   // const callResult = await axios.get(
@@ -410,6 +414,17 @@ const test_NowPlaying = {
   },
   total_pages: 59
 };
+
+//...
+
+/////////////////////////////////////////////
+//
+// TV SHOWS *********************************
+// TV SHOWS *********************************
+// TV SHOWS *********************************
+// TV SHOWS *********************************
+//
+/////////////////////////////////////////////
 
 /////////////////////////////////////////////
 // test_tv_on_air
