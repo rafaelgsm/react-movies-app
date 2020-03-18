@@ -27,8 +27,6 @@ const useStyles = makeStyles(theme => ({
 const DefaultSelector = props => {
   const classes = useStyles();
 
-  const [searchType, setSearchType] = React.useState("");
-
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
@@ -36,7 +34,6 @@ const DefaultSelector = props => {
   }, []);
 
   const handleChange = event => {
-    setSearchType(event.target.value);
 
     props.onSelectorChange(event.target.value);
   };
@@ -68,7 +65,7 @@ const DefaultSelector = props => {
               </MenuItem>
             );
           }
-          return (
+          return (                  
             <MenuItem key={index} value={item}>
               {item}
             </MenuItem>

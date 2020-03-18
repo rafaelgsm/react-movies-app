@@ -7,7 +7,8 @@ import { searchMovies } from "../services/MovieApi";
 
 class MainAppContainer extends Component {
   state = {
-    searchList: undefined
+    searchList: undefined,
+    selectedTab: 0
   };
 
   ////////////////////////////////////////////////////////////
@@ -34,7 +35,8 @@ class MainAppContainer extends Component {
       //Both query and search type are filled, then do the request:
       searchMovies(currentSearchType, currentSearchText).then(searchList => {
         this.setState({
-          searchList
+          searchList,
+          selectedTab: 1
         });
       });
     } else {
@@ -48,17 +50,28 @@ class MainAppContainer extends Component {
 
   ////////////////////////////////////////////////////////////
 
+  handleChange = (e, newValue) => {
+    this.setState({
+      selectedTab: newValue
+    });
+  };
+
+  ////////////////////////////////////////////////////////////
   render() {
-    const { searchList } = this.state;
+    const { searchList, selectedTab } = this.state;
     return (
       <div>
-        <Search        
+        <Search
           onInputChange={this.handleInputChange}
           onSelectorChange={this.handleSelectorChange}
           onSubmit={this.handleSubmit}
         />
 
-        <TabsContainer searchList={searchList} />
+        <TabsContainer
+          handleChange={this.handleChange}
+          searchList={searchList}
+          value={selectedTab}
+        />
       </div>
     );
   }

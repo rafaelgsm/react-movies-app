@@ -45,14 +45,11 @@ const Search = props => {
     props.onSelectorChange(text);
   };
 
-  const handleSubmit = e => {
-    console.log(searchText.length);
-    console.log(searchType.length);
+  const handleSubmit = e => {  
 
     if (searchText.length > 0 && searchType.length > 0) {
       setError(false);
-    } else {
-      console.log("no!!!");
+    } else {    
       setError(true);
     }
 

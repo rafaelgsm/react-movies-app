@@ -5,8 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 
 import TabPanel from "../layout/TabPanel";
 import MoviesTabContainer from "./MoviesTabContainer";
@@ -35,18 +33,13 @@ const useStyles = makeStyles(theme => ({
 
 const TabsContainer = props => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.handleChange}
           aria-label="simple tabs example"
         >
           <Tab label="Movies" {...a11yProps(0)} />
@@ -54,13 +47,13 @@ const TabsContainer = props => {
           <Tab label="TV Shows" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={props.value} index={0}>
         <MoviesTabContainer />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={props.value} index={1}>
         <SearchTabContainer searchList={props.searchList} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={props.value} index={2}>
         <TvTabContainer />
       </TabPanel>
     </div>
