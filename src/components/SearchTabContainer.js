@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { getTvShows } from "../services/MovieApi";
 
 import Loading from "../layout/Loading";
 import MovieList from "../layout/MovieList";
@@ -22,17 +21,8 @@ class SearchTabContainer extends Component {
     }
   };
 
-  componentDidMount = () => {
-  
-    // this.setState({
-    //   isLoading: true
-    // });
-
-    // this.getTvShowsBasedOnCategory();
-  };
-
   render() {
-    const { isLoading, searchList } = this.state;
+    const { searchList } = this.state;
     return (
       <div>      
         {this.getMessage() !== "" ? this.getMessage() : <MovieList movieList={searchList} />}

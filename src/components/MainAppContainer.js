@@ -32,6 +32,11 @@ class MainAppContainer extends Component {
     e.preventDefault();
 
     if (currentSearchText && currentSearchType) {
+      this.setState({
+        searchList: undefined,
+        selectedTab: -1 //To force search results to refresh
+      });
+
       //Both query and search type are filled, then do the request:
       searchMovies(currentSearchType, currentSearchText).then(searchList => {
         this.setState({
@@ -39,13 +44,7 @@ class MainAppContainer extends Component {
           selectedTab: 1
         });
       });
-    } else {
-      //Fields not filled:
-      this.setState({
-        searchList: undefined
-      });
     }
-    //todo----
   };
 
   ////////////////////////////////////////////////////////////
