@@ -20,13 +20,13 @@ export const getMovies = async category => {
 /////////////////////////////////////////////
 
 export const searchMovies = async (category, query) => {
-  const callResult = await axios.get(
-    `${BASE_URL}search/${category}?api_key=${APP_KEY}&language=en-US&page=1&query=${query}`
-  );
+  // const callResult = await axios.get(
+  //   `${BASE_URL}search/${category}?api_key=${APP_KEY}&language=en-US&page=1&query=${query}`
+  // );
 
-  return mapToMovieObject(callResult.data.results);
+  // return mapToMovieObject(callResult.data.results);
 
-  // return mapToMovieObject(test_NowPlaying.results);
+  return mapToMovieObject(test_NowPlaying.results);
 };
 
 /////////////////////////////////////////////
@@ -48,7 +48,9 @@ const mapToMovieObject = movieList => {
   return movieList.map(item => {
     const movie = {
       id: item.id,
-      poster: item.poster_path,
+      poster:
+        "https://image.tmdb.org/t/p/w300/" +
+        item.poster_path,
       name: item.title,
       release_date: item.release_date,
       popularity: item.popularity,
@@ -64,7 +66,9 @@ const mapTvToMovieObject = movieList => {
   return movieList.map(item => {
     const movie = {
       id: item.id,
-      poster: item.poster_path,
+      poster:
+        "https://image.tmdb.org/t/p/w300/" +
+        item.poster_path,
       name: item.name,
       release_date: item.first_air_date,
       popularity: item.popularity,

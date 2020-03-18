@@ -22,7 +22,7 @@ const MovieList = props => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} >
         {/* Add a container here, like a grid */}
 
         {props.movieList.map(movie => {
@@ -35,7 +35,7 @@ const MovieList = props => {
             description
           } = movie;
           return (
-            <MovieItem
+            <MovieItem 
               key={id}
               id={id}
               poster={poster}
