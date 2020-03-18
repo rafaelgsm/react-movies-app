@@ -6,13 +6,13 @@ import axios from "axios";
 /////////////////////////////////////////////
 
 export const getMovies = async category => {
-  // const callResult = await axios.get(
-  //   `${BASE_URL}movie/${category}?api_key=${APP_KEY}&language=en-US&page=1`
-  // );
+  const callResult = await axios.get(
+    `${BASE_URL}movie/${category}?api_key=${APP_KEY}&language=en-US&page=1`
+  );
 
-  // return mapToMovieObject(callResult.data.results);
+  return mapToMovieObject(callResult.data.results);
 
-  return mapToMovieObject(test_NowPlaying.results);
+  // return mapToMovieObject(test_NowPlaying.results);
 };
 
 /////////////////////////////////////////////
@@ -20,13 +20,13 @@ export const getMovies = async category => {
 /////////////////////////////////////////////
 
 export const searchMovies = async (category, query) => {
-  // const callResult = await axios.get(
-  //   `${BASE_URL}search/${category}?api_key=${APP_KEY}&language=en-US&page=1&query=${query}`
-  // );
+  const callResult = await axios.get(
+    `${BASE_URL}search/${category}?api_key=${APP_KEY}&language=en-US&page=1&query=${query}`
+  );
 
-  // return mapToMovieObject(callResult.data.results);
+  return mapToMovieObject(callResult.data.results);
 
-  return mapToMovieObject(test_NowPlaying.results);
+  // return mapToMovieObject(test_NowPlaying.results);
 };
 
 /////////////////////////////////////////////
@@ -34,13 +34,13 @@ export const searchMovies = async (category, query) => {
 /////////////////////////////////////////////
 
 export const getTvShows = async category => {
-  // const callResult = await axios.get(
-  //   `${BASE_URL}tv/${category}?api_key=${APP_KEY}&language=en-US&page=1`
-  // );
+  const callResult = await axios.get(
+    `${BASE_URL}tv/${category}?api_key=${APP_KEY}&language=en-US&page=1`
+  );
 
-  // return mapTvToMovieObject(callResult.data.results);
+  return mapTvToMovieObject(callResult.data.results);
 
-  return mapTvToMovieObject(test_tv_top_rated.results);
+  // return mapTvToMovieObject(test_tv_top_rated.results);
 };
 
 //Maps movie response to default project movie object:
@@ -48,9 +48,7 @@ const mapToMovieObject = movieList => {
   return movieList.map(item => {
     const movie = {
       id: item.id,
-      poster:
-        "https://image.tmdb.org/t/p/w300/" +
-        item.poster_path,
+      poster: "https://image.tmdb.org/t/p/w300/" + item.poster_path,
       name: item.title,
       release_date: item.release_date,
       popularity: item.popularity,
@@ -66,9 +64,7 @@ const mapTvToMovieObject = movieList => {
   return movieList.map(item => {
     const movie = {
       id: item.id,
-      poster:
-        "https://image.tmdb.org/t/p/w300/" +
-        item.poster_path,
+      poster: "https://image.tmdb.org/t/p/w300/" + item.poster_path,
       name: item.name,
       release_date: item.first_air_date,
       popularity: item.popularity,

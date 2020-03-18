@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/MovieApi";
 
+import Box from "@material-ui/core/Box";
+
 import DefaultSelector from "../layout/DefaultSelector";
 import Loading from "../layout/Loading";
 import MovieList from "../layout/MovieList";
@@ -44,12 +46,20 @@ class MoviesTabContainer extends Component {
     const { isLoading, categorySelected, movieList } = this.state;
     return (
       <div>
-        <DefaultSelector
-          searchTypeName="Category"
-          searchTypeSelected={categorySelected}
-          typeList={["now_playing", "popular", "top_rated", "upcoming"]}
-          onSelectorChange={this.onSelectorChange}
-        />
+        <Box
+          display="flex"
+          margin="auto"
+          justifyContent="center"
+          paddingTop="1rem"
+          paddingBottom="2rem"
+        >
+          <DefaultSelector
+            searchTypeName="Category"
+            searchTypeSelected={categorySelected}
+            typeList={["now_playing", "popular", "top_rated", "upcoming"]}
+            onSelectorChange={this.onSelectorChange}
+          />
+        </Box>
         {isLoading ? <Loading /> : <MovieList movieList={movieList} />}
       </div>
     );

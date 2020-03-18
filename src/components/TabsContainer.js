@@ -27,7 +27,7 @@ function a11yProps(index) {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
+    border: "1px solid #000"
   }
 }));
 
@@ -38,6 +38,9 @@ const TabsContainer = props => {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs
+          textColor="primary"
+          variant="fullWidth"
+          style={{ background: "#f2f2f2" }}
           value={props.value}
           onChange={props.handleChange}
           aria-label="simple tabs example"

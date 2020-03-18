@@ -34,7 +34,6 @@ const DefaultSelector = props => {
   }, []);
 
   const handleChange = event => {
-
     props.onSelectorChange(event.target.value);
   };
 
@@ -42,10 +41,10 @@ const DefaultSelector = props => {
 
   return (
     <FormControl
+      style={{ width: "200px" }}
       error={error}
       variant="outlined"
       className={classes.formControl}
-      style={{ width: "200px" }}
     >
       <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
         {searchTypeName}
@@ -65,7 +64,7 @@ const DefaultSelector = props => {
               </MenuItem>
             );
           }
-          return (                  
+          return (
             <MenuItem key={index} value={item}>
               {item}
             </MenuItem>
