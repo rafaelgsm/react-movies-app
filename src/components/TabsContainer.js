@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 
 import TabPanel from "../layout/TabPanel";
 import MoviesTabContainer from "./MoviesTabContainer";
+import SearchTabContainer from "./SearchTabContainer";
 import TvTabContainer from "./TvTabContainer";
 
 TabPanel.propTypes = {
@@ -56,7 +57,9 @@ const TabsContainer = props => {
       <TabPanel value={value} index={0}>
         <MoviesTabContainer />
       </TabPanel>
-      <TabPanel value={value} index={1}></TabPanel>
+      <TabPanel value={value} index={1}>
+        <SearchTabContainer searchList={props.searchList} />
+      </TabPanel>
       <TabPanel value={value} index={2}>
         <TvTabContainer />
       </TabPanel>

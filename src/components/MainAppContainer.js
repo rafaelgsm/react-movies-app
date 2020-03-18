@@ -3,10 +3,11 @@ import React, { Component } from "react";
 import Search from "../layout/Search";
 import TabsContainer from "./TabsContainer";
 
+import { searchMovies } from "../services/MovieApi";
+
 class MainAppContainer extends Component {
   state = {
-    currentSearchText: "",
-    currentSearchType: ""
+    searchList: undefined
   };
 
   ////////////////////////////////////////////////////////////
@@ -30,9 +31,17 @@ class MainAppContainer extends Component {
     e.preventDefault();
 
     if (currentSearchText && currentSearchType) {
-      console.log(`YESH! ${currentSearchText} ${currentSearchType}`);
+      //Both query and search type are filled, then do the request:
+      searchMovies(currentSearchType, currentSearchText).then(searchList => {
+        this.setState({
+          searchList
+        });
+      });
     } else {
-      console.log(`No!`);
+      //Fields not filled:
+      this.setState({
+        searchList: undefined
+      });
     }
     //todo----
   };
@@ -40,15 +49,16 @@ class MainAppContainer extends Component {
   ////////////////////////////////////////////////////////////
 
   render() {
+    const { searchList } = this.state;
     return (
       <div>
-        <Search
+        <Search        
           onInputChange={this.handleInputChange}
           onSelectorChange={this.handleSelectorChange}
           onSubmit={this.handleSubmit}
         />
 
-        <TabsContainer />
+        <TabsContainer searchList={searchList} />
       </div>
     );
   }

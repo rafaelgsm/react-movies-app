@@ -41,10 +41,11 @@ const DefaultSelector = props => {
     props.onSelectorChange(event.target.value);
   };
 
-  const {searchTypeName, searchTypeSelected, typeList} = props
-  
+  const { error, searchTypeName, searchTypeSelected, typeList } = props;
+
   return (
     <FormControl
+      error={error}
       variant="outlined"
       className={classes.formControl}
       style={{ width: "200px" }}

@@ -30,12 +30,33 @@ const useStyles = makeStyles(theme => ({
 const Search = props => {
   const classes = useStyles();
 
+  const [searchText, setSearchText] = React.useState("");
   const [searchType, setSearchType] = React.useState("");
 
-  const handleChange = event => {
-    setSearchType(event.target.value);
+  const [error, setError] = React.useState(false);
 
-    props.onSelectorChange(event.target.value);
+  const handleChangeText = e => {
+    setSearchText(e.target.value);
+    props.onInputChange(e.target.value);
+  };
+
+  const handleChangeSelector = text => {
+    setSearchType(text);
+    props.onSelectorChange(text);
+  };
+
+  const handleSubmit = e => {
+    console.log(searchText.length);
+    console.log(searchType.length);
+
+    if (searchText.length > 0 && searchType.length > 0) {
+      setError(false);
+    } else {
+      console.log("no!!!");
+      setError(true);
+    }
+
+    props.onSubmit(e);
   };
 
   return (
@@ -51,20 +72,22 @@ const Search = props => {
       className={classes.root}
       noValidate
       autoComplete="off"
-      onSubmit={props.onSubmit}
+      onSubmit={handleSubmit}
     >
       <TextField
+        error={error}
         style={{ width: "40%" }}
         id="outlined-basic"
         label="Search"
         variant="outlined"
-        onChange={e => props.onInputChange(e.target.value)}
+        onChange={handleChangeText}
       />
 
       <DefaultSelector
+        error={error}
         searchTypeName="Search Type"
         typeList={["", "movie", "multi", "tv"]}
-        onSelectorChange={handleChange}
+        onSelectorChange={handleChangeSelector}
       />
 
       <Button variant="contained" color="primary" type="submit">

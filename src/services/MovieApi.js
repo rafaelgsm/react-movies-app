@@ -1,6 +1,10 @@
 import { APP_KEY, BASE_URL } from "../config/api_config";
 import axios from "axios";
 
+/////////////////////////////////////////////
+//MOVIES:
+/////////////////////////////////////////////
+
 export const getMovies = async category => {
   // const callResult = await axios.get(
   //   `${BASE_URL}movie/${category}?api_key=${APP_KEY}&language=en-US&page=1`
@@ -12,10 +16,24 @@ export const getMovies = async category => {
 };
 
 /////////////////////////////////////////////
+//SEARCH:
+/////////////////////////////////////////////
+
+export const searchMovies = async (category, query) => {
+  const callResult = await axios.get(
+    `${BASE_URL}search/${category}?api_key=${APP_KEY}&language=en-US&page=1&query=${query}`
+  );
+
+  return mapToMovieObject(callResult.data.results);
+
+  // return mapToMovieObject(test_NowPlaying.results);
+};
+
+/////////////////////////////////////////////
 //TV SHOWS:
 /////////////////////////////////////////////
 
-export const getTvShows = async (category) => {
+export const getTvShows = async category => {
   // const callResult = await axios.get(
   //   `${BASE_URL}tv/${category}?api_key=${APP_KEY}&language=en-US&page=1`
   // );
